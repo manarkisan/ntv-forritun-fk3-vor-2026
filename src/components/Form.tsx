@@ -14,8 +14,14 @@ import {
 import { Button } from "./Button";
 
 export function Form() {
-    const [myName, setMyName] = useState("Hjalti");
+    const [myFirstName, setMyFirstName] = useState('');
+    const [myLastName, setMyLastName] = useState("");
+    const [myEmail, setMyEmail] = useState("");
+    const [myPhone, setMyPhone] = useState("");
     const [selectedFruit, setSelectedFruit] = useState('')
+    // const handleChange = (e) => {
+    //     (e.target.value)
+    // }
     return (
         <Card>
             <CardHeader>
@@ -24,18 +30,49 @@ export function Form() {
             <div className="w-full max-w-md">
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    window.alert(`${myName} just placed an order for ${selectedFruit}`)
+                    window.alert(`${myFirstName} ${myLastName} ${myEmail} ${myPhone} just placed an order for ${selectedFruit}`)
+                    console.log(myFirstName, myLastName, myEmail, myPhone, selectedFruit)
                 }}>
                     <FieldSet>
                         <FieldGroup>
                             <Field>
-                                <FieldLabel htmlFor="name">Full name</FieldLabel>
+                                <FieldLabel htmlFor="firstName">First name</FieldLabel>
+                                   <Input
+                                    id="firstName"
+                                    autoComplete="off"
+                                    placeholder="Evil"
+                                    onChange={(e) => {
+                                        setMyFirstName(e.target.value);
+                                    }}
+                                    
+                                />
+                                <FieldLabel htmlFor="lastName">Last name</FieldLabel>
                                 <Input
-                                    id="name"
+                                    id="lastName"
+                                    autoComplete="off"
+                                    placeholder="Rabbit"
+                                    onChange={(e) => {
+                                        setMyLastName(e.target.value);
+                                    }}
+                                />
+                                  <FieldLabel htmlFor="email">Email</FieldLabel>
+                                <Input
+                                    id="email"
+                                    type="email"
                                     autoComplete="off"
                                     placeholder="Evil Rabbit"
                                     onChange={(e) => {
-                                        setMyName(e.target.value);
+                                        setMyEmail(e.target.value);
+                                    }}
+                                />
+                                  <FieldLabel htmlFor="Phone">Mobile number</FieldLabel>
+                                <Input
+                                    id="phone"
+                                    type="number"
+                                    autoComplete="off"
+                                    placeholder="5812345"
+                                    onChange={(e) => {
+                                        setMyPhone(e.target.value);
                                     }}
                                 />
                                 <FieldDescription>
