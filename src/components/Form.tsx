@@ -18,6 +18,7 @@ export function Form() {
     const [myLastName, setMyLastName] = useState("");
     const [myEmail, setMyEmail] = useState("");
     const [myPhone, setMyPhone] = useState("");
+    const [bag, setBag] = useState("");
     const [selectedFruit, setSelectedFruit] = useState('')
     // const handleChange = (e) => {
     //     (e.target.value)
@@ -30,7 +31,7 @@ export function Form() {
             <div className="w-full max-w-md">
                 <form onSubmit={(e) => {
                     e.preventDefault()
-                    window.alert(`${myFirstName} ${myLastName} ${myEmail} ${myPhone} just placed an order for ${selectedFruit}`)
+                    window.alert(`${myFirstName} ${myLastName} ${myEmail} ${myPhone} just placed an order for ${selectedFruit}. Bag ${bag}`)
                     console.log(myFirstName, myLastName, myEmail, myPhone, selectedFruit)
                 }}>
                     <FieldSet>
@@ -60,7 +61,7 @@ export function Form() {
                                     id="email"
                                     type="email"
                                     autoComplete="off"
-                                    placeholder="Evil Rabbit"
+                                    placeholder="Evil@Rabbit.com"
                                     onChange={(e) => {
                                         setMyEmail(e.target.value);
                                     }}
@@ -73,6 +74,23 @@ export function Form() {
                                     placeholder="5812345"
                                     onChange={(e) => {
                                         setMyPhone(e.target.value);
+                                    }}
+                                />
+                                <FieldLabel htmlFor="Bag">Would you like a bag with the order?</FieldLabel>
+                                <Input
+                                    id="Yes"
+                                    type="radio"
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        setBag(e.target.value);
+                                    }}
+                                />
+                                <Input
+                                    id="No"
+                                    type="radio"
+                                    autoComplete="off"
+                                    onChange={(e) => {
+                                        setBag(e.target.value);
                                     }}
                                 />
                                 <FieldDescription>
