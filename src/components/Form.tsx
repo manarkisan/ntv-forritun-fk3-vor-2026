@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "./Input";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 import {
@@ -26,8 +26,16 @@ export function Form() {
   const [myLastName, setMyLastName] = useState("");
   const [myEmail, setMyEmail] = useState("");
   const [myPhone, setMyPhone] = useState("");
-  const [bag, setBag] = useState("");
+  const [bag, setBag] = useState<string | undefined>(
+    undefined
+  );
   const [selectedFruit, setSelectedFruit] = useState("");
+
+  useEffect(() => {
+    if (bag !=null) {
+        console.log(setBag);
+    }
+  },[bag])
 
   return (
     <Card>
@@ -95,13 +103,13 @@ export function Form() {
                 <FieldLabel htmlFor="Bag">
                   Would you like a bag with the order?
                 </FieldLabel>
-                <RadioGroup defaultValue="option-one">
+                <RadioGroup value={bag} onValueChange={setBag}>
                   <div className="flex items-center gap-3">
-                    <RadioGroupItem value="option-yes" id="option-yes" />
+                    <RadioGroupItem value="yes" id="option-yes" />
                     <Label htmlFor="option-yes">Yes</Label>
                   </div>
                   <div className="flex items-center gap-3">
-                    <RadioGroupItem value="option-no" id="option-no" />
+                    <RadioGroupItem value="no" id="option-no" />
                     <Label htmlFor="option-no">No</Label>
                   </div>
                 </RadioGroup>
