@@ -30,14 +30,6 @@ type FormValuesType = {
 }
 
 export function Form() {
-
-    const [firstName, setFirstName] = useState("")
-    const [lastName, setLastName] = useState("")
-    const [email, setEmail] = useState("")
-    const [phone, setPhone] = useState("")
-    const [selectedFruit, setSelectedFruit] = useState("")
-    const [radioButton, setRadioButton] = useState("")
-
     // TODO: Remove ref data set, and only use state to keep track of realtime local data (written in input)
     // NOTE: You might want to detach the email from the data set (since it's used to index the localstorage)
     const dataRef = useRef<FormValuesType>({

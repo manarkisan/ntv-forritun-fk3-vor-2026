@@ -1,8 +1,7 @@
 import { Input as ShadInput } from "@/components/ui/input"
-import type React from "react";
 
 
-export const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => <div className="bg-fuchsia-100"><ShadInput {...props}/></div>
+export const Input = ShadInput
 
 type Props = {
     value: string;
