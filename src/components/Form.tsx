@@ -41,6 +41,13 @@ export function Form() {
         radioButton: null,
     })
 
+    //   const [firstName, setFirstName] = useState("")    
+    // const [lastName, setLasstName] = useState("")    
+    // // const [email, setEmail] = useState("")    
+    // const [mobileNumber, setMobileNumber] = useState("")    
+    // const [selectedFruit, setSelectedFruit] = useState("")    
+    // const [radioButton, setRadioButton] = useState("")  
+
     const [values, setValues] = useState<FormValuesType>({
         firstName: '',
         lastName: '',
@@ -49,6 +56,8 @@ export function Form() {
         selectedFruit: '',
         radioButton: null,
     })
+
+    const [state, setState] = useState(false)
 
     const onInputChange = useCallback((key: keyof FormValuesType, value: string) => {
         dataRef.current[key] = value
@@ -92,6 +101,7 @@ export function Form() {
     return (
         <div >
             {/* {(firstName || lastName) ? <p>Your name is: {headerValue} </p> : <p>What is your name?</p>} */}
+            {state &&
             <Card className="w-3/4 max-w-7xl bg-blue-950">
                 <CardHeader>
                     <div className="flex items-center gap-2">
@@ -129,6 +139,7 @@ export function Form() {
                                     id="lastName"
                                     autoComplete="off"
                                     placeholder="Skulason"
+                                    value={values.lastName}
                                     onChange={(e) => {
                                         onInputChange('lastName', e.target.value)
                                     }}
@@ -142,6 +153,7 @@ export function Form() {
                                     autoComplete="off"
                                     type="email"
                                     placeholder="asdf@ntv.is"
+                                    value={values.email}
                                     onChange={(e) => {
                                         onInputChange('email', e.target.value)
                                     }}
@@ -154,6 +166,7 @@ export function Form() {
                                     autoComplete="off"
                                     type="number"
                                     placeholder="Mobile number"
+                                    value={values.mobileNumber}
                                     onChange={(e) => {
                                         onInputChange('mobileNumber', e.target.value)
                                     }}
@@ -202,7 +215,7 @@ export function Form() {
                         <Button value="edit" type="submit" className="bg-black p-4 rounded text-white uppercase border-pink-500 border" />
                     </div>
                 </form>
-            </Card>
+            </Card>}
             <Card className="my-4">
                 <CardHeader>
                     <div className="flex items-center gap-2">
@@ -218,6 +231,7 @@ export function Form() {
                     }}
                     className="w-full"
                 >
+                    
                     <FieldSet>
                         <FieldGroup>
                             <Field>
@@ -233,8 +247,14 @@ export function Form() {
                         </FieldGroup>
                     </FieldSet>
                     <div className="flex flex-col py-4 gap-4">
-                        <Button value="load" type="submit" className="bg-green-500 p-4 rounded text-white uppercase" />
-                        <Button value="create new" type="submit" className="bg-green-500 p-4 rounded text-white uppercase" />
+                        <Button value="load" type="submit" className="bg-green-500 p-4 rounded text-white uppercase" 
+                        onClick={() => {
+                            setState(s => !s)
+                        }}/>
+                        <Button value="create new" type="submit" className="bg-green-500 p-4 rounded text-white uppercase" 
+                        onClick={() => {
+                            setState(s => !s)
+                        }}/>
                     </div>
                 </form>
             </Card>
