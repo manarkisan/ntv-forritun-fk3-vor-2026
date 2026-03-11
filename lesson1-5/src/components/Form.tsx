@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Input } from "./Input";
 import { Card, CardHeader, CardTitle } from "./ui/card";
 import {
@@ -32,14 +32,14 @@ type FormValuesType = {
 export function Form() {
     // TODO: Remove ref data set, and only use state to keep track of realtime local data (written in input)
     // NOTE: You might want to detach the email from the data set (since it's used to index the localstorage)
-    const dataRef = useRef<FormValuesType>({
-        firstName: '',
-        lastName: '',
-        email: '',
-        mobileNumber: '',
-        selectedFruit: '',
-        radioButton: null,
-    })
+    // const dataRef = useRef<FormValuesType>({
+    //     firstName: '',
+    //     lastName: '',
+    //     email: '',
+    //     mobileNumber: '',
+    //     selectedFruit: '',
+    //     radioButton: null,
+    // })
 
     //   const [firstName, setFirstName] = useState("")    
     // const [lastName, setLasstName] = useState("")    
@@ -60,12 +60,16 @@ export function Form() {
     const [state, setState] = useState(false)
 
     const onInputChange = useCallback((key: keyof FormValuesType, value: string) => {
-        dataRef.current[key] = value
+       
+        setValues((prev) => ({
+            ...prev,
+            [key]: value
+        }))
     }, [])
 
     const onSubmit = () => {
-        const { firstName, email } = dataRef.current
-        localStorage.setItem(email, JSON.stringify(dataRef.current))
+        const { firstName, email } = values
+        localStorage.setItem(email, JSON.stringify(values))
         window.alert(`Hello ${firstName}; email address ${email}`)
     }
 
@@ -88,13 +92,20 @@ export function Form() {
     }, [])
 
     // TODO: Use the correct state to connect to debounce state
-    const [TEMP_HOOK_REPLACE] = useState('');
+   
 
     // Set delay time according to your needs
-    const debouncedSearchTerm = useDebounce(TEMP_HOOK_REPLACE, 1000);
+    const debounceValues = useDebounce<FormValuesType>(values, 1000);
     // TODO: Write useEffect to repopulate the localstorage after debounce
     // NOTE: The email has to be present for this to work
-
+    useEffect(() => {
+        if (debounceValues.email) {
+            localStorage.setItem(
+                debounceValues.email,
+                JSON.stringify(debounceValues)
+            )
+        }
+    }, [debounceValues]) 
 
     // TODO: If no email is provided, display only the email input, or some other alternative UX
 
@@ -120,7 +131,7 @@ export function Form() {
                     <FieldSet>
                         <FieldGroup>
                             <Field>
-                                <p className="text-white">Search term: {debouncedSearchTerm}</p>
+                                <p className="text-white">Search term: {debounceValues}</p>
                                 <Input
                                     className="bg-white"
                                     id="firstName"
@@ -176,7 +187,7 @@ export function Form() {
                         <FieldGroup>
                             <Select
                                 onValueChange={(e) => {
-                                    onInputChange('mobileNumber', e)
+                                    onInputChange('selectedFruit', e)
                                 }}
                             >
                                 <SelectTrigger className="w-full bg-white" >
@@ -196,7 +207,7 @@ export function Form() {
                         </FieldGroup>
                         <FieldGroup>
                             <RadioGroup defaultValue="comfortable" className="w-fit flex" onValueChange={(e) => {
-                                onInputChange('mobileNumber', e)
+                                onInputChange('radioButton', e)
                             }}>
                                 <RadioGroupItem className="bg-white" value="yes" id="yes" />
                                 <Label className="text-white" htmlFor="yes">Yes</Label>
