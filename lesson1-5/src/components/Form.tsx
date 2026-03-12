@@ -59,6 +59,8 @@ export function Form() {
 
     const [state, setState] = useState(false)
 
+    const [mode, setMode] =useState<"start" | "create" | "load">("start")
+
     const onInputChange = useCallback((key: keyof FormValuesType, value: string) => {
        
         setValues((prev) => ({
