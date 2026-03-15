@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 const STORAGE_KEY = "theme";
 type Theme = "light" | "dark";
@@ -16,9 +16,15 @@ function setTheme(theme: Theme) {
   localStorage.setItem(STORAGE_KEY, theme);
 }
 
+const ThemeContext = createContext("toggle")
+export function Toolbar() {
+  return <ThemeToggle/>
+}
+
 export function ThemeToggle() {
-  const [theme, setThemeState] = useState<Theme>("light");
-  const [mounted, setMounted] = useState(false);
+   const [theme, setThemeState] = useState<Theme>("light");
+   const [mounted, setMounted] = useState(false);
+  // const { theme, setTheme } = useContext(ThemeContext)
 
   useEffect(() => {
     setThemeState(getInitialTheme());
@@ -30,9 +36,9 @@ export function ThemeToggle() {
     setTheme(theme);
   }, [theme, mounted]);
 
-  const toggle = () => {
-    setThemeState((t) => (t === "light" ? "dark" : "light"));
-  };
+   const toggle = () => {
+     setThemeState((t: string) => (t === "light" ? "dark" : "light"));
+   };
 
   if (!mounted) {
     return (
@@ -46,6 +52,7 @@ export function ThemeToggle() {
     <button
       type="button"
       className="theme-toggle"
+      // onClick={() => setTheme(theme === "light" ? "dark" : "light")}
       onClick={toggle}
       aria-label={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
       title={`Switch to ${theme === "light" ? "dark" : "light"} theme`}
@@ -54,3 +61,11 @@ export function ThemeToggle() {
     </button>
   );
 }
+function setThemeState(arg0: string) {
+  throw new Error("Function not implemented.");
+}
+
+function setMounted(arg0: boolean) {
+  throw new Error("Function not implemented.");
+}
+

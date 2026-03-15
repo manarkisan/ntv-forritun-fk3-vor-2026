@@ -8,6 +8,8 @@ import {
 } from "@remix-run/react";
 
 import appStyles from "./app.css?url";
+import { createContext, useState } from "react";
+import { Toolbar } from "./components/ThemeToggle";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStyles },
@@ -16,11 +18,17 @@ export const links: LinksFunction = () => [
 export function meta() {
   return [
     { title: "Remix Theme App" },
-    { name: "description", content: "Simple Remix app with light and dark theme" },
+    {
+      name: "description",
+      content: "Simple Remix app with light and dark theme",
+    },
   ];
 }
 
+const ThemeContext = createContext("toggle")
+
 export default function App() {
+  const [theme, setTheme] = useState("light")
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -43,6 +51,10 @@ export default function App() {
             `,
           }}
         />
+        <ThemeContext.Provider value={{ theme, setTheme}}>
+          <Toolbar/>
+        </ThemeContext.Provider>
+
         <Outlet />
         <ScrollRestoration />
         <Scripts />
