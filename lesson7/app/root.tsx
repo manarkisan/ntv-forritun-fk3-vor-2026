@@ -10,6 +10,7 @@ import {
 import appStyles from "./app.css?url";
 import { createContext, useState } from "react";
 import { Toolbar } from "./components/ThemeToggle";
+import ShoppingCart from "./components/CounterToggle";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStyles },
@@ -54,6 +55,8 @@ export default function App() {
         <ThemeContext.Provider value={{ theme, setTheme}}>
           <Toolbar/>
         </ThemeContext.Provider>
+
+        <ShoppingCart />
 
         <Outlet />
         <ScrollRestoration />
