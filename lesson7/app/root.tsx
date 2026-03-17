@@ -57,6 +57,8 @@ export default function App() {
         </ThemeContext.Provider>
 
         <ShoppingCart />
+<a href "https://www.ohmydollz.com/?p=fiche&pseudo=cheesepopcorn">💉<a><a href "https://es.ohmydollz.com/?p=fiche&pseudo=luciferna">🧚🏻<a><a href "https://de.ohmydollz.com/?p=fiche&pseudo=appelsin">☠️<a><a href "https://tr.ohmydollz.com/?p=fiche&pseudo=krydd">🌿<a><a href "https://it.ohmydollz.com/?p=fiche&pseudo=tomatsosa">🫛<a><a href "https://ru.ohmydollz.com/?p=fiche&pseudo=l0stgrrlkatya">👑<a><a href "https://cn.ohmydollz.com/?p=fiche&pseudo=dreki">🐉<a>
+
 
         <Outlet />
         <ScrollRestoration />
