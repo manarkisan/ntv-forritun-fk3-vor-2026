@@ -1,3 +1,4 @@
+import { useAppStore } from '@/shared/components/ui/store/appStore';
 import { CartItemRow } from './components/CartItemRow';
 import { CartSummary } from './components/CartSummary';
 import type { CartItem } from './types';
@@ -9,6 +10,7 @@ type CartProps = {
 };
 
 export function Cart({ items, onQuantityChange, onRemove }: CartProps) {
+  const { items, updateQuantity, removeItem} = useAppStore
   return (
     <section className="space-y-6">
       <h2 className="text-lg font-semibold">Cart</h2>
