@@ -1,4 +1,3 @@
-import { useAppStore } from '@/shared/components/ui/store/appStore';
 import { CartItemRow } from './components/CartItemRow';
 import { CartSummary } from './components/CartSummary';
 import type { CartItem } from './types';

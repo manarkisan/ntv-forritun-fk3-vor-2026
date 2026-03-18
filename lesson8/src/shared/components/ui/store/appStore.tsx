@@ -1,4 +1,4 @@
-import { create, createStore } from 'zustand'
+import { create } from 'zustand'
 
 type AppStoreState = {
   productId: number,
