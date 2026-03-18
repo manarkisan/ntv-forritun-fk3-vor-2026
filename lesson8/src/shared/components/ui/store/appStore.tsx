@@ -1,3 +1,31 @@
+import { create, createStore } from 'zustand'
+
+type AppStoreState = {
+  productId: number,
+  addToCart: () => void
+  removeFromCart: () => void
+}
+
+export const useAppStore = create<AppStoreState>((set) => ({
+  productId: 0,
+  addToCart: () => set((state) => ({ productId: state.productId + 1 })),
+  removeFromCart: () => set({ productId: 0 })
+}))
+
+export function AppStore() {
+  const productId = useAppStore((state) => state.productId)
+  return <h1>{productId} added to cart :D</h1>
+}
+
+export function Controls() {
+  const addToCart = useAppStore((state) => state.addToCart)
+  return <button onClick={addToCart}>one up</button>
+}
+
+
+
+
+
 // import { ProductCard, type CartItem, type Product } from "@/features";
 // import { create, createStore } from "zustand";
 // import { useStore } from 'zustand'

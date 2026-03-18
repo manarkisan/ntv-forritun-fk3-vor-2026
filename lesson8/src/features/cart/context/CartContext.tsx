@@ -4,9 +4,10 @@ import {
   useState,
   useCallback,
   type ReactNode,
-} from 'react';
-import type { Product } from '@/features/products/types';
-import type { CartItem } from '../types';
+} from "react";
+import type { Product } from "@/features/products/types";
+import type { CartItem } from "../types";
+import { useAppStore } from "@/shared/components/ui/store/appStore";
 
 type CartContextValue = {
   items: CartItem[];
@@ -16,6 +17,20 @@ type CartContextValue = {
 };
 
 const CartContext = createContext<CartContextValue | null>(null);
+
+export const AppStoreState = () => {
+  // const productId = useAppStore((state) => state.productId);
+  // const addToCart = useAppStore((state) => state.addToCart);
+  // const removeFromCart = useAppStore((state) => state.removeFromCart);
+  const { productId, addToCart, removeFromCart } = useAppStore();
+  return (
+    <div>
+      <p>items: {productId}</p>
+      <button onClick={addToCart}>add item</button>
+      <button onCanPlay={removeFromCart}>remove item</button>
+    </div>
+  );
+};
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
@@ -55,6 +70,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
 export function useCart() {
   const ctx = useContext(CartContext);
-  if (!ctx) throw new Error('useCart must be used within CartProvider');
+  if (!ctx) throw new Error("useCart must be used within CartProvider");
   return ctx;
 }
