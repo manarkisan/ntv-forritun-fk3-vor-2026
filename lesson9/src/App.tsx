@@ -14,3 +14,7 @@ function App() {
 }
 
 export default App;
+
+
+
+// www.themealdb.com/api/json/v1/1/random.php
