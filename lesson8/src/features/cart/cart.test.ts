@@ -26,3 +26,14 @@ test('Add Product to set quantity 1', () => {
 
     expect(result.current.items[0].quantity).toBe(1);
 })
+test('Remove Product to set quantity to 0', () => {
+  const { result } = renderHook(() => useCart(),{
+        wrapper: CartProvider,
+    });
+     act(() => {
+        result.current.addToCart(mockProduct);
+        result.current.removeFromCart(mockProduct);
+    })
+
+    expect(result.current.items[0].quantity).toBe(0);
+})
