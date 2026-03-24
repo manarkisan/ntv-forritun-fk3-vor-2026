@@ -1,39 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useCallback,
-  type ReactNode,
-} from "react";
-import type { Product } from "@/features/products/types";
-import type { CartItem } from "../types";
-import { useAppStore } from "@/shared/components/ui/store/appStore";
+import { useState, useCallback, type ReactNode } from 'react';
+import type { Product } from '@/features/products/types';
+import type { CartItem } from '../types';
+import { CartContext } from './cartContext';
 
-type CartContextValue = {
-  items: CartItem[];
-  addToCart: (product: Product) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
-  removeItem: (productId: string) => void;
-};
-
-const CartContext = createContext<CartContextValue | null>(null);
-
-// export const AppStoreState = () => {
-//   // const productId = useAppStore((state) => state.productId);
-//   // const addToCart = useAppStore((state) => state.addToCart);
-//   // const removeFromCart = useAppStore((state) => state.removeFromCart);
-//   const { productId, addToCart, removeFromCart } = useAppStore();
-//   return (
-//     <div>
-      
-//       <p>items: {productId}</p>
-//       <button onClick={addToCart}>add item</button>
-//       <button onCanPlay={removeFromCart}>remove item</button>
-//     </div>
-//   );
-// };
-
-export function AppStoreState({ children }: { children: ReactNode }) {
+export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
 
   const addToCart = useCallback((product: Product) => {
@@ -61,16 +31,8 @@ export function AppStoreState({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <CartContext.Provider
-      value={{ items, addToCart, updateQuantity, removeItem }}
-    >
+    <CartContext.Provider value={{ items, addToCart, updateQuantity, removeItem }}>
       {children}
     </CartContext.Provider>
   );
-}
-
-export function useCart() {
-  const ctx = useContext(CartContext);
-  if (!ctx) throw new Error("useCart must be used within CartProvider");
-  return ctx;
 }
