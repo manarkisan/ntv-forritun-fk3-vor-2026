@@ -2,9 +2,9 @@ import { ProductList } from './components/ProductList';
 import type { Product } from './types';
 
 const DEFAULT_PRODUCTS: Product[] = [
-  { id: '1', name: 'Product One', price: 1990, description: 'A first product' },
-  { id: '2', name: 'Product Two', price: 2990, description: 'A second product' },
-  { id: '3', name: 'Product Three', price: 3990, description: 'A third product' },
+  { id: '1', name: 'Product One', price: 1990, description: 'A first product', quantity: 1 },
+  { id: '2', name: 'Product Two', price: 2990, description: 'A second product', quantity: 1 },
+  { id: '3', name: 'Product Three', price: 3990, description: 'A third product', quantity: 1 },
 ];
 
 type ProductsProps = {
