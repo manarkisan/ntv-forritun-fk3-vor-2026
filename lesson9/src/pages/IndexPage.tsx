@@ -1,5 +1,5 @@
 import Recipe from "@/features/recipes/component/RecipeCard";
-import RandomJoke from "@/features/recipes/component/RecipeCard";
+
 
 
 export function IndexPage() {
