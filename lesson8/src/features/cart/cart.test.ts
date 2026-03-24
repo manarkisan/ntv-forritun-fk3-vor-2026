@@ -11,9 +11,10 @@ test('Add Product to set quantity 2', () => {
     });
     act(() => {
         result.current.addToCart(mockProduct);
+        result.current.addToCart(mockProduct);
     })
 
-    expect(result.current.items[0].quantity).toBe(1);
+    expect(result.current.items[0].quantity).toBe(2);
 })
 test('Add Product to set quantity 1', () => {
     const { result } = renderHook(() => useCart(),{
