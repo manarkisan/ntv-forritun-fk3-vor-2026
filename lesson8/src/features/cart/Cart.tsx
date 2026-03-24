@@ -5,7 +5,7 @@ import type { CartItem } from './types';
 type CartProps = {
   items: CartItem[];
   onQuantityChange?: (productId: string, quantity: number) => void;
-  onRemove?: (productId: string) => void;
+  onRemove?: (productId: string, quantity: number) => void;
 };
 
 

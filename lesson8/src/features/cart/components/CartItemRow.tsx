@@ -6,7 +6,7 @@ import type { CartItem as CartItemType } from '../types';
 type CartItemRowProps = {
   item: CartItemType;
   onQuantityChange?: (productId: string, quantity: number) => void;
-  onRemove?: (productId: string) => void;
+  onRemove?: (productId: string, quantity: number) => void;
 };
 
 export function CartItemRow({ item, onQuantityChange, onRemove }: CartItemRowProps) {
@@ -54,7 +54,7 @@ export function CartItemRow({ item, onQuantityChange, onRemove }: CartItemRowPro
           {onRemove && (
             <button
               type="button"
-              onClick={() => onRemove(product.id)}
+              onClick={() => onRemove(product.id, quantity)}
               className="text-muted-foreground hover:text-foreground text-sm underline"
             >
               Remove
