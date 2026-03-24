@@ -1,16 +1,5 @@
-import { create } from 'zustand'
+import { useAppStore } from "./appStoreState"
 
-type AppStoreState = {
-  productId: number,
-  addToCart: () => void
-  removeFromCart: () => void
-}
-
-export const useAppStore = create<AppStoreState>((set) => ({
-  productId: 0,
-  addToCart: () => set((state) => ({ productId: state.productId + 1 })),
-  removeFromCart: () => set({ productId: 0 })
-}))
 
 export function AppStore() {
   const productId = useAppStore((state) => state.productId)
