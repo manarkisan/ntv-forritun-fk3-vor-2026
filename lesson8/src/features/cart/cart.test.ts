@@ -4,6 +4,7 @@ import { useCart } from './context/useCart';
 import type { Product } from '@/features/products/types';
 
 const mockProduct: Product = { id: "1", name: "test", price: 10};
+// const removeMockProduct: Product = {id: "1", name: "test", price: 10}
 
 test('Add Product to set quantity 2', () => {
     const { result } = renderHook(() => useCart(),{
@@ -32,7 +33,7 @@ test('Remove Product to set quantity to 0', () => {
     });
      act(() => {
         result.current.addToCart(mockProduct);
-        result.current.removeFromCart(mockProduct);
+        result.current.removeItem(mockProduct);
     })
 
     expect(result.current.items[0].quantity).toBe(0);
