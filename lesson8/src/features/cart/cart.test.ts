@@ -34,8 +34,9 @@ test('Remove Product to set quantity to 0', () => {
     });
      act(() => {
         result.current.addToCart(mockProductOne);
+        result.current.addToCart(mockProductOne);
         result.current.removeItem(mockProductOne.id);
     })
 
-    expect(result.current.items[1]).toHaveLength(0);
+    expect(result.current.items[1]).toHaveLength(1);
 })
