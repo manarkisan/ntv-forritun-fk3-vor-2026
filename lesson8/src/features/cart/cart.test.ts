@@ -37,5 +37,5 @@ test('Remove Product to set quantity to 0', () => {
         result.current.removeItem(mockProductOne.id);
     })
 
-    expect(result.current.items[0].quantity).toBe(0);
+    expect(result.current.items[0].quantity).toHaveLength(0);
 })
