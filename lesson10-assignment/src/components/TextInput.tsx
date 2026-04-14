@@ -6,7 +6,14 @@
 //    When multiline is true, the component renders a <textarea> and should
 //    accept <textarea> props (rows, cols, wrap, etc.) instead of <input> props.
 //    When multiline is false or omitted, it renders an <input> with <input> props.
-function TextInput({ label, hint, error, multiline, className, ...props }: any) {
+
+ type TextInputProps<T extends React.ElementType = 'input'> ={
+  as?: T;
+ error: string
+  label: string;
+} & Omit<React.ComponentProps<T>, 'as'   >
+
+function TextInput<T extends React.ElementType>({ label, hint, error, multiline, className, ...props }: TextInputProps<T>) {
   const InputComponent = multiline ? 'textarea' : 'input';
 
   return (
