@@ -10,6 +10,14 @@
 //    call logger.error(...) — NOT console.error directly. This way, if you
 //    ever want to forward errors to Sentry / a backend, you change one file.
 
-export const logger = {
-  // TODO
+
+
+export const logger = () => {
+  const log = (message: string, ...args: unknown[]) => console.log(`[LOG]: ${message}`, ...args);
+  const warn = (message: string, ...args: unknown[]) => console.warn(`[WARN]: ${message}`, …args);
+const error = (message: string, error?: unknown, ...args: unknown[]) => console.error(`[ERROR]: ${message}`, ...args);
+
 };
+
+// log(...args:unknown[])
+// error(message: string)

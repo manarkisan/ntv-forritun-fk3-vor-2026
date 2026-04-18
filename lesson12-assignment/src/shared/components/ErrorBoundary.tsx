@@ -16,3 +16,5 @@
 // Hints:
 // - Import { Component, type ErrorInfo, type ReactNode } from 'react'
 // - Import { logger } from '@/shared/lib/logger'
+
+
