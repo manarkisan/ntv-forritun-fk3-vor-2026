@@ -17,4 +17,34 @@
 // - Import { Component, type ErrorInfo, type ReactNode } from 'react'
 // - Import { logger } from '@/shared/lib/logger'
 
+import { logger } from "../lib/logger";
+import { Component, type ErrorInfo, type ReactNode } from "react";
 
+interface Props {
+  children: ReactNode;
+}
+
+interface State {
+  hasError: boolean;
+}
+
+export default class ErrorBoundary extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+  static getDerivedStateFromError(): State {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    logger.error("ERRoR!", error, info);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      return <div className="text-red-600">OOPS! Something went wrong!</div>;
+    }
+    return this.props.children;
+  }
+}

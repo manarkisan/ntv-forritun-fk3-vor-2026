@@ -9,22 +9,19 @@
   //    with no .catch().
   //    => should be caught by the window 'unhandledrejection' listener
   //
-  // 3. "Throw from setTimeout" → onClick schedules a setTimeout callback
-  //    that throws.
-  //    => should be caught by the window 'error' listener
+  // 3. Throw from setTimeout
   //
   // After clicking each one, check the console — every error should be
   // prefixed with [error] (your logger), proving it flowed through logger.error.
 
+import ErrorBoundary from "@/shared/components/ErrorBoundary";
+import { logger } from "@/shared/lib/logger";
 import { useState } from "react";
-import { ErrorBoundary } from "./ErrorBoundary";
+
 
   function CrashOnRender() {
-    try {
       throw new Error ('Crash during render.');
-    } catch (e) {
-      console.error(`${e.name}: ${e.message}`)
-    }
+    
   }
 
   function CrashButton() {
@@ -50,9 +47,12 @@ export function IndexPage() {
       <ErrorBoundary><CrashButton /></ErrorBoundary>
       
       <button onClick={() => {
-         Promise.reject()
+         Promise.reject(new Error('Unhandled promise rejection fdhydfhdfxh'))
       }}> test #2 </button>
       <button onClick={() => {
+        setTimeout(() => {
+       throw new Error('throw from setTimeout')
+        }, 1000)
          console.log("error 3")
       }}> test #3</button>
     </main>

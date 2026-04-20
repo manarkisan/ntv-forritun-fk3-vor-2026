@@ -12,10 +12,10 @@
 
 
 
-export const logger = () => {
-  const log = (message: string, ...args: unknown[]) => console.log(`[LOG]: ${message}`, ...args);
-  const warn = (message: string, ...args: unknown[]) => console.warn(`[WARN]: ${message}`, …args);
-const error = (message: string, error?: unknown, ...args: unknown[]) => console.error(`[ERROR]: ${message}`, ...args);
+export const logger =  {
+   log: (message: string, ...args: unknown[]) => console.log(`[LOG]: ${message}`, ...args),
+   warn: (message: string, ...args: unknown[]) => console.warn(`[WARN]: ${message}`, ...args),
+ error: (message: string, error?: unknown, ...args: unknown[]) => console.error(`[ERROR]: ${message}`, error, ...args),
 
 };
 

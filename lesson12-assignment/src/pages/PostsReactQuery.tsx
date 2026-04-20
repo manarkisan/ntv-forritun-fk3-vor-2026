@@ -1,10 +1,20 @@
-const API_URL = 'https://jsonplaceholder.typicode.com/posts?_limit=5';
+import { useQueries, useQuery } from "@tanstack/react-query";
+
+const API_URL = "https://jsonplaceholder.typicode.com/does-not-exist";
 
 type Post = {
   userId: number;
   id: number;
   title: string;
   body: string;
+};
+
+const fetchPosts = async () => {
+  const response = await fetch(API_URL);
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status}`);
+  }
+  return response.json();
 };
 
 export function PostsReactQuery() {
@@ -35,10 +45,40 @@ export function PostsReactQuery() {
   // You should NOT need to call logger.error in this file — the global
   // QueryCache.onError you wired in App.tsx will handle that for you.
 
-  const posts: Post[] = [];
+  const { data, error, isError, isLoading, refetch } = useQuery<Post[], Error>({
+    queryKey: ["posts"],
+    queryFn: fetchPosts,
+    retry: false,
+  });
+
+  if (isLoading) return <div>Loading...</div>;
+  if (isError)
+    return (
+      <>
+        <div className="text-red-600">
+          Oh noes! An error occured: {error.message}
+        </div>
+        <button onClick={() => refetch()}>Try again :o</button>
+      </>
+    );
   return (
     <div>
-      <p>TODO — fetch {API_URL} with useQuery. (currently {posts.length} posts loaded)</p>
+      {data?.map((post) => (
+        <div>
+          <h3>{post.title}</h3>
+          <p>{post.body}</p>
+        </div>
+      ))}
     </div>
   );
+
+  // const posts: Post[] = [];
+  // return (
+  //   <div>
+  //     <p>
+  //       TODO — fetch {API_URL} with useQuery. (currently {posts.length} posts
+  //       loaded)
+  //     </p>
+  //   </div>
+  // );
 }

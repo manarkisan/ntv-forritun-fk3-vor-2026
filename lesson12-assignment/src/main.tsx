@@ -3,6 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App.tsx';
+import { logger } from './shared/lib/logger.ts';
 
 // TODO: Register two global error listeners on `window` so no error goes
 // unreported, even ones React cannot catch:
@@ -22,3 +23,11 @@ createRoot(document.getElementById('root')!).render(
     </BrowserRouter>
   </StrictMode>,
 );
+
+window.addEventListener('error', (event) => {
+  logger.error('Global Error:', event.error);
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  logger.error('Unhandled Promise', event.reason);
+  });
