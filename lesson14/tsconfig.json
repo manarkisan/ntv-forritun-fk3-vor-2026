@@ -6,9 +6,9 @@
   ],
   "compilerOptions": {
     "strict": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"," globals.d.ts"]
     }
   }
 }
