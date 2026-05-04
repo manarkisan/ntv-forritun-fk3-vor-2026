@@ -5,13 +5,12 @@
 
  import { Provider } from 'react-redux';
  import InboxScreen from './components/InboxScreen/InboxScreen';
-import { Counter } from './components/Counter/Counter';
 
 function App() {
   return (
-  
-     <Counter />
-   
+   <Provider store={store}>
+     <InboxScreen />
+   </Provider>
   );
 }
 export default App;

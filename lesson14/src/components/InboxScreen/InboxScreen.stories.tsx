@@ -1,17 +1,17 @@
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
- import { http, HttpResponse } from 'msw';
+ import { waitFor, waitForElementToBeRemoved } from 'storybook/test';
 
- import { MockedState } from '../TaskList/TaskList.stories';
+import { http, HttpResponse } from 'msw';
+
+import { MockedState } from '../TaskList/TaskList.stories';
 
 import { Provider } from 'react-redux';
 
 import InboxScreen from './InboxScreen';
 
 import store from '../../lib/store';
-import { waitFor, waitForElementToBeRemoved } from 'storybook/test';
-
 
 const meta = {
   component: InboxScreen,
