@@ -1,5 +1,6 @@
 import type { AppPage } from '@/navigation';
 import type { ReactNode } from 'react';
+import { Link, Outlet } from 'react-router-dom';
 
 type LayoutProps = {
   activePage: AppPage;
@@ -25,21 +26,26 @@ export function Layout({ activePage, onNavigate, children }: LayoutProps) {
             Lesson 16
           </p>
           <nav className="flex flex-wrap gap-2" aria-label="Main navigation">
-            <button
+           <Link to="/">Heim</Link> 
+           <Link to="about">About</Link>
+           <Link to="login">Login</Link>
+           {/* <button
               type="button"
               className={navButtonClassName(activePage === 'home')}
               onClick={() => onNavigate('home')}
             >
               Home
-            </button>
-            <button
+            </button> */}
+            
+            {/* <button
               type="button"
               className={navButtonClassName(activePage === 'about')}
               onClick={() => onNavigate('about')}
             >
               About
-            </button>
+            </button> */}
           </nav>
+          <Outlet />
         </div>
       </header>
       <main className="mx-auto w-full max-w-6xl px-4 py-8">{children}</main>
