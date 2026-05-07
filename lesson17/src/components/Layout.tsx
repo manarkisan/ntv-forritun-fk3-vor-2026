@@ -1,17 +1,18 @@
 import { Button } from '@/components/ui/button';
-import { useAuth } from '@clerk/clerk-react';
+import { useAuth, useClerk } from '@clerk/clerk-react';
 import { ROUTES } from '@/navigation';
 import { Link, Outlet } from 'react-router-dom';
 
 export function Layout() {
-  const { isSignedIn, signOut } = useAuth();
+  const { isSignedIn } = useAuth();
+  const { signOut } = useClerk();
 
   return (
     <div className="bg-background min-h-screen">
       <header className="border-border bg-card/50 border-b backdrop-blur-sm">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-4 py-4">
           <p className="text-foreground text-sm font-semibold tracking-tight">
-            Lesson 16
+            Lesson 17
           </p>
           <nav className="flex flex-wrap items-center gap-2" aria-label="Main navigation">
             <Button variant="ghost" size="sm" asChild>

@@ -12,13 +12,7 @@ export function ProtectedRoute({ children }: ProtectedRouteProps) {
   const location = useLocation();
 
   if (!isSignedIn) {
-    return (
-      <Navigate
-        to={ROUTES.login}
-        replace
-        state={{ from: location }}
-      />
-    );
+    return <Navigate to={ROUTES.login} replace state={{ from: location }} />;
   }
 
   return children;
