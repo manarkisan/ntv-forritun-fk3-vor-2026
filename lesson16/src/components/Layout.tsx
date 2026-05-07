@@ -1,6 +1,7 @@
 import type { AppPage } from '@/navigation';
 import type { ReactNode } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { fakeAuth } from './fakeAuth';
 
 type LayoutProps = {
   activePage: AppPage;
@@ -8,16 +9,7 @@ type LayoutProps = {
   children: ReactNode;
 };
 
-function navButtonClassName(isActive: boolean) {
-  return [
-    'rounded-md px-3 py-2 text-sm font-medium transition-colors',
-    isActive
-      ? 'bg-primary text-primary-foreground'
-      : 'text-muted-foreground hover:bg-muted hover:text-foreground',
-  ].join(' ');
-}
-
-export function Layout({ activePage, onNavigate, children }: LayoutProps) {
+export function Layout({ children }: LayoutProps) {
   return (
     <div className="bg-background min-h-screen">
       <header className="border-border bg-card/50 border-b backdrop-blur-sm">
@@ -29,21 +21,8 @@ export function Layout({ activePage, onNavigate, children }: LayoutProps) {
            <Link to="/">Heim</Link> 
            <Link to="about">About</Link>
            <Link to="login">Login</Link>
-           {/* <button
-              type="button"
-              className={navButtonClassName(activePage === 'home')}
-              onClick={() => onNavigate('home')}
-            >
-              Home
-            </button> */}
-            
-            {/* <button
-              type="button"
-              className={navButtonClassName(activePage === 'about')}
-              onClick={() => onNavigate('about')}
-            >
-              About
-            </button> */}
+           {fakeAuth.isAuthenticated && <Link to="secret">Secret</Link>}
+         
           </nav>
           <Outlet />
         </div>
