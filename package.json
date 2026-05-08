@@ -1,5 +1,8 @@
 {
   "dependencies": {
     "@clerk/react": "^6.6.1"
+  },
+  "devDependencies": {
+    "vitest": "^4.1.5"
   }
 }
