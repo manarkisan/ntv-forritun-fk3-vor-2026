@@ -7,9 +7,11 @@
   "compilerOptions": {
     "types": [
       "vitest/globals",
-      "@testing-library/jest-dom"
+      "@testing-library/jest-dom",
     ],
       "moduleResolution": "Bundler",
-    "module": "ESNext"
+    "module": "ESNext",
+     "allowImportingTsExtensions": true,
+    "noEmit": true
   }
 }
