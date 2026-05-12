@@ -21,3 +21,4 @@ export const withGlobalContext: Decorator = (Story) => (
     <Story />
   </GlobalContext.Provider>
 );
+
