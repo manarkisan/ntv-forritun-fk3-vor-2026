@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/react-vite';
 import { withGlobalContext } from './decorators';
+import '../src/index.css';
 
 const preview: Preview = {
   decorators: [withGlobalContext],

@@ -1,21 +1,23 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-
+import type { Meta, StoryObj } from '@storybook/react';
 import AddProject from './AddProject';
+import { Dialog, DialogContent } from '@/shared/components/ui/dialog';
 
 const meta: Meta<typeof AddProject> = {
   component: AddProject,
-  title:'AddProject'
-} satisfies Meta<typeof AddProject>;
+  title: 'Project/AddProject',
+  decorators: [
+    (Story) => (
+      <Dialog>
+        <Story />
+        <DialogContent>
+          Project form would appear here
+        </DialogContent>
+      </Dialog>
+    ),
+  ],
+};
 
 export default meta;
-
-type Story = StoryObj<typeof meta>;
-export const Basic = {} satisfies Story;
- 
-export const Primary = {
-  args: {
-    primary: true,
-  },
-} satisfies Story;
+type Story = StoryObj<typeof AddProject>;
 
 export const Default: Story = {};
