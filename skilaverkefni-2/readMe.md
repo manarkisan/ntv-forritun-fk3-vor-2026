@@ -1,3 +1,5 @@
+Student note: For some reason, I forgot to make a new repo with only skilaverkefni-2 folder and subfolders (skilaverkefni-1). Hence why this is (still) part of the bigger semester repo. 
+
 # Team Task Hub – Testing assignment (skilaverkefni-2)
 
 ## Overview
