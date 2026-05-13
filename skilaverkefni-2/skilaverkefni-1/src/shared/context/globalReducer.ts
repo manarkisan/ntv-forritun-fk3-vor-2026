@@ -87,7 +87,7 @@ export const globalReducer: Reducer<GlobalState, GlobalAction> = (
       const { projectId, tasksCount } = action.payload;
       const projects = state.projects
         .map((p) => (p.id === projectId ? { ...p, tasksCount } : p))
-        .filter((p) => p.tasksCount > 0);
+        //.filter((p) => p.tasksCount > 0);
       return {
         ...state,
         projects,
