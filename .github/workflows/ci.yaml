@@ -2,9 +2,9 @@ name: CI
 
 on:
   push:
-    branches: [skilaverkefni-2]
+    branches: [main]
   pull_request:
-    branches: [skilaverkefni-2]
+    branches: [main]
 
 jobs:
   vitest:
