@@ -8,7 +8,7 @@
     "types": [
       "vitest/globals",
       "@testing-library/jest-dom",
-      "jest", "node",
+      "jest", "node", "mocha", "chai"
     ],
       "moduleResolution": "Bundler",
     "module": "ESNext",
