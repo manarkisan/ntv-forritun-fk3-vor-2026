@@ -47,6 +47,7 @@ function Tasks() {
             <TaskTable
               projectId={activeProject.id}
               onEditTask={() => {
+                setEditingTask(task); //fixed bug #2?
                 setTaskFormOpen(true);
               }}
             />
